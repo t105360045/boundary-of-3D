@@ -1,30 +1,31 @@
 #include <iostream>
-#include <cmath>
-#include<vector>
+#define pi 3.14159265358979323846
+#include <cmath> 
+#include <vector>
 using namespace std;
 
-class Pos
+class Dot
 {
 public:
 	double x;
 	double y;
-	Pos()
+	Dot()
 	{
 		x = 0;
 		y = 0;
 	}
-	Pos(double a, double b)
+	Dot(double a, double b)
 	{
 		x = a;
 		y = b;
 	}
-	void setPos()
+	void setDot()
 	{
 		cout << "請輸入X Y: ";
 		cin >> x;
 		cin >> y;
 	}
-	void setPos(double a, double b)
+	void setDot(double a, double b)
 	{
 		x = a;
 		y = b;
@@ -43,16 +44,16 @@ public:
 class XYboundCal
 {
 public:
-	
-	double U, D, L, R,origin_x, origin_y,BL,BW;
-	vector <Pos> bound;//UDLW 上下左右
-	vector <Pos> dot;
-	
+
+	double U, D, L, R, origin_x, origin_y, BL, BW;
+	vector <Dot> bound;//UDLW 上下左右
+	vector <Dot> dot;
+
 	XYboundCal()
 	{
-		
+
 	}
-	void pushXY(Pos temp)
+	void pushXY(Dot temp)
 	{
 		dot.push_back(temp);
 		if (bound.size()<4)
@@ -88,17 +89,15 @@ public:
 class Test
 {
 public:
-	XYboundCal WORK;
-	
 
 	void Test_XYboundCal()
 	{
 		XYboundCal WORK;
-		Pos a(1, 1);
-		Pos b(2, 2);
-		Pos c(2, 5);
-		Pos d(3, 9);
-		Pos e(4, 0.5);
+		Dot a(1, 1);
+		Dot b(2, 2);
+		Dot c(2, 5);
+		Dot d(3, 9);
+		Dot e(4, 0.5);
 
 
 		WORK.pushXY(a);
@@ -112,11 +111,72 @@ public:
 	}
 };
 
+class camView
+{
+public:
+	double Hor_W, Hor_FOV, Hor_H, Hor_S, point_Horizontal_Angle;
+	double point_Vertical_Angle;
+	struct point
+	{
+		double x;
+		double y;
+		double z;
+	}point;
+	struct dot
+	{
+		double x;
+		double y;
+	}dot;
+	camView()
+	{
+
+	}
+	camView(double hor_w, double hor_fov)
+	{
+		Hor_W = hor_w;
+		Hor_FOV = (hor_fov * pi) / 180;
+		Hor_H = (cos(Hor_FOV / 2) / sin(Hor_FOV / 2)* Hor_W / 2);// Hor_H 為 CAM水平 到屏幕直線距離
+		Hor_S = Hor_H / cos(Hor_FOV / 2);
+
+		
+	}
+	
+	void point_To_Angle(double X, double Y,double Z)
+	{
+		point.x = X;
+		point.y = Y;
+		point.z = Z;
+		point_Horizontal_Angle = atan(point.y / point.x);
+		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x+ point.y*point.y+ point.z+ point.z));
+		//修正水平角度, 因 -M_PI_2 <= atan <= M_PI_2  >> 
+		if (point.x < 0.0)
+		{
+			if (point.y < 0.0)
+			{
+				point_Horizontal_Angle -= pi;
+			}
+			else
+			{
+				point_Horizontal_Angle += pi;
+			}
+		}
+
+		cout << point_Horizontal_Angle*180/pi << endl;
+		dot.x = Hor_W / 2 + tan(point_Horizontal_Angle)*Hor_H;
+		cout << dot.x << endl;
+	}
+	
+};
+
 int main()
 {
-	Test T1;
-	T1.Test_XYboundCal();
-	
+
+	camView T1(1.732*2.0, 120.0);
+	cout << "1,1" << endl;
+	T1.point_To_Angle(1, 1,0);
+	cout <<"-1,1"<< endl;
+	T1.point_To_Angle(-1, 1,0);
+
 
 	system("pause");
 	return 0;
