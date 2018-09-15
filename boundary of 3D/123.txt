@@ -1,0 +1,25 @@
+
+
+struct Point
+{
+	double x;
+	double y;
+	double z;
+};
+
+
+class
+{
+	double x;
+	double y;
+	double width;
+	double height;
+	void set(double w, double h, double H_FOV, double V_FOV);
+	int compute(std::vector<Point> points, Point camera, Point look)
+	{
+
+	}
+
+}
+points.size()
+points[i].x

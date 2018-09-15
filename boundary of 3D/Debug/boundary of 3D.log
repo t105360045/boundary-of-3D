@@ -1,0 +1,40 @@
+﻿  Source.cpp
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C2923: 'std::vector': 對參數 '_Ty' 而言，'Pos' 不是有效的 樣板 類型引數
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C2903: 'allocator': 符號不是類別 樣板 也不是函式 樣板
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C3203: 'allocator': 非特製化 類別 樣板 不可做為 樣板 引數 (對 樣板 參數 '_Alloc' 而言)，它必須是實際類型
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C2133: 'dot': 未知的大小
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(7): error C2512: 'std::vector': 沒有適當的預設建構函式
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(674): note: 請參閱 'std::vector' 的宣告
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(9): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(9): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'origin' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(9): error C3861: 'origin': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(11): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(11): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'Lmax' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(11): error C3861: 'Lmax': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(12): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(12): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'Rmax' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(12): error C3861: 'Rmax': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(13): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(13): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'Umax' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(13): error C3861: 'Umax': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(14): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(14): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'Dmax' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(14): error C3861: 'Dmax': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(16): error C2065: 'Pos': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(16): error C2146: 語法錯誤: 遺漏 ';' (在識別項 'temp' 之前)
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(16): error C3861: 'temp': 找不到識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(23): error C2065: 'temp': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(23): error C2228: '.setPos' 的左邊必須有類別/結構/等位
+  c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(23): note: 類型為 'unknown-type'
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(24): error C2065: 'temp': 未宣告的識別項
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(26): error C3867: 'std::vector<_Ty,_Alloc>::size': 非標準語法; 請使用 '&' 建立成員的指標
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(26): error C2446: '<': 沒有從 '_Vector_alloc<_Alloc_types>::_Val_types::size_type (__thiscall std::vector::* )(void) noexcept const' 至 'int' 的轉換
+  c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(26): note: 沒有可以進行此轉換的內容
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(28): error C2678: 二元運算子 '[': 找不到使用左方運算元類型 'std::vector' 的運算子 (或是沒有可接受的轉換)
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1813): note: 可能是 'const _Ty &std::vector<_Ty,_Alloc>::operator [](const _Vector_alloc<_Alloc_types>::_Val_types::size_type) const'
+  c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.14.26428\include\vector(1799): note: 或       '_Ty &std::vector<_Ty,_Alloc>::operator [](const _Vector_alloc<_Alloc_types>::_Val_types::size_type)'
+  c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(28): note: 當嘗試符合引數清單 '(std::vector, int)' 時
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(28): error C2228: '.getx' 的左邊必須有類別/結構/等位
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(28): error C2088: '[': class 不合法
+c:\users\kai-pc\documents\boundary of 3d\boundary of 3d\source.cpp(28): error C2228: '.gety' 的左邊必須有類別/結構/等位
