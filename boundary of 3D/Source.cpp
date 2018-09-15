@@ -146,7 +146,7 @@ public:
 		point.x = X;
 		point.y = Y;
 		point.z = Z;
-		point_Horizontal_Angle = atan(point.y / point.x);
+		point_Horizontal_Angle = 124.7;// atan(point.y / point.x);
 		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x+ point.y*point.y+ point.z+ point.z));
 		//修正水平角度, 因 -M_PI_2 <= atan <= M_PI_2  >> 
 		if (point.x < 0.0)
@@ -160,10 +160,22 @@ public:
 				point_Horizontal_Angle += pi;
 			}
 		}
+		if (point_Horizontal_Angle > pi / 2)
+		{
+			point_Horizontal_Angle = point_Horizontal_Angle - pi / 2;
+			dot.x = Hor_W / 2 - tan(point_Horizontal_Angle)*Hor_H;
+		}
+		else
+		{
+			if (point_Horizontal_Angle < pi / 2)
+			{
+				point_Horizontal_Angle=pi/2-point_Horizontal_Angle - (pi/2- Hor_FOV / 2);
+				dot.x = Hor_W / 2 + tan(point_Horizontal_Angle)*Hor_H;
 
-		cout << point_Horizontal_Angle*180/pi << endl;
-		dot.x = Hor_W / 2 + tan(point_Horizontal_Angle)*Hor_H;
-		cout << dot.x << endl;
+			}
+		}
+		cout << Hor_H << endl;
+		cout << dot.x << endl << endl;
 	}
 	
 };
@@ -171,7 +183,7 @@ public:
 int main()
 {
 
-	camView T1(1.732*2.0, 120.0);
+	camView T1(1280, 80);
 	cout << "1,1" << endl;
 	T1.point_To_Angle(1, 1,0);
 	cout <<"-1,1"<< endl;
