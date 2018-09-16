@@ -114,8 +114,8 @@ public:
 class camView
 {
 public:
-	double Hor_W, Hor_FOV, Hor_H, Hor_S, point_Horizontal_Angle;
-	double point_Vertical_Angle;
+	double Hor_L, Hor_FOV, Hor_H, Hor_S, point_Horizontal_Angle;
+	double point_Vertical_Angle,Ver_W;
 	struct point
 	{
 		double x;
@@ -131,23 +131,23 @@ public:
 	{
 
 	}
-	camView(double hor_w, double hor_fov)
+	camView(double hor_l,double hor_fov)
 	{
-		Hor_W = hor_w;
+		Hor_L = hor_l;
 		Hor_FOV = (hor_fov * pi) / 180;
-		Hor_H = (cos(Hor_FOV / 2) / sin(Hor_FOV / 2)* Hor_W / 2);// Hor_H 為 CAM水平 到屏幕直線距離
+		Hor_H = (cos(Hor_FOV / 2) / sin(Hor_FOV / 2)* Hor_L / 2);// Hor_H 為 CAM水平 到屏幕直線距離
 		Hor_S = Hor_H / cos(Hor_FOV / 2);
+	 
 
-		
 	}
-	
-	void point_To_Angle(double X, double Y,double Z)
+
+	void point_To_Angle(double X, double Y, double Z)
 	{
 		point.x = X;
 		point.y = Y;
 		point.z = Z;
-		point_Horizontal_Angle = 124.7;// atan(point.y / point.x);
-		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x+ point.y*point.y+ point.z+ point.z));
+		point_Horizontal_Angle =  atan(point.y / point.x);
+		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x + point.y*point.y + point.z + point.z));
 		//修正水平角度, 因 -M_PI_2 <= atan <= M_PI_2  >> 
 		if (point.x < 0.0)
 		{
@@ -160,22 +160,35 @@ public:
 				point_Horizontal_Angle += pi;
 			}
 		}
+		
 		if (point_Horizontal_Angle > pi / 2)
 		{
 			point_Horizontal_Angle = point_Horizontal_Angle - pi / 2;
-			dot.x = Hor_W / 2 - tan(point_Horizontal_Angle)*Hor_H;
+			dot.x = Hor_L / 2 - tan(point_Horizontal_Angle)*Hor_H;
 		}
 		else
 		{
 			if (point_Horizontal_Angle < pi / 2)
 			{
-				point_Horizontal_Angle=pi/2-point_Horizontal_Angle - (pi/2- Hor_FOV / 2);
-				dot.x = Hor_W / 2 + tan(point_Horizontal_Angle)*Hor_H;
+				point_Horizontal_Angle = pi / 2 - point_Horizontal_Angle ;
+				dot.x = Hor_L / 2 + tan(point_Horizontal_Angle)*Hor_H;
 
 			}
 		}
-		cout << Hor_H << endl;
-		cout << dot.x << endl << endl;
+		if (point_Vertical_Angle >0)
+		{
+			dot.y = (Ver_W / 2)-(tan(point_Vertical_Angle)*Hor_H);
+		}
+		else
+		{
+			if (point_Vertical_Angle <0)
+			{
+				dot.y=(Ver_W / 2 )+ (tan(point_Vertical_Angle)*Hor_H);
+			}
+		}
+		cout << "point(" << point.x << "," << point.y << "," << point.z << ")" << endl;
+		cout << "dot(" << dot.x << "," << dot.y <<  ")" << endl;
+		
 	}
 	
 };
@@ -183,11 +196,11 @@ public:
 int main()
 {
 
-	camView T1(1280, 80);
-	cout << "1,1" << endl;
-	T1.point_To_Angle(1, 1,0);
-	cout <<"-1,1"<< endl;
-	T1.point_To_Angle(-1, 1,0);
+	camView T1(1.732*2, 120);
+
+	 
+	T1.point_To_Angle(1.0, 1.0,0.0);  
+	T1.point_To_Angle(-1.0, 1.0,0.0);
 
 
 	system("pause");
