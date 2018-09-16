@@ -147,7 +147,7 @@ public:
 		point.y = Y;
 		point.z = Z;
 		point_Horizontal_Angle =  atan(point.y / point.x);
-		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x + point.y*point.y + point.z + point.z));
+		point_Vertical_Angle = acos(point.z / sqrt(point.x*point.x + point.y*point.y + point.z * point.z));
 		//修正水平角度, 因 -M_PI_2 <= atan <= M_PI_2  >> 
 		if (point.x < 0.0)
 		{
@@ -175,19 +175,22 @@ public:
 
 			}
 		}
-		if (point_Vertical_Angle >0)
+		/* if (point_Vertical_Angle >0)
 		{
-			dot.y = (Ver_W / 2)-(tan(point_Vertical_Angle)*Hor_H);
+			dot.y = (Ver_W / 2)+(tan(point_Vertical_Angle)*Hor_H);
 		}
 		else
 		{
 			if (point_Vertical_Angle <0)
 			{
-				dot.y=(Ver_W / 2 )+ (tan(point_Vertical_Angle)*Hor_H);
+				dot.y=(Ver_W / 2 )- (tan(point_Vertical_Angle)*Hor_H);
 			}
-		}
-		cout << "point(" << point.x << "," << point.y << "," << point.z << ")" << endl;
-		cout << "dot(" << dot.x << "," << dot.y <<  ")" << endl;
+		}*/
+	//	cout << "point(" << point.x << "," << point.y << "," << point.z << ")" << endl;
+	//	cout << "dot(" << dot.x << "," << dot.y <<  ")" << endl;
+		cout << Ver_W << endl;//沒初值:
+
+
 		
 	}
 	
@@ -199,8 +202,8 @@ int main()
 	camView T1(1.732*2, 120);
 
 	 
-	T1.point_To_Angle(1.0, 1.0,0.0);  
-	T1.point_To_Angle(-1.0, 1.0,0.0);
+	T1.point_To_Angle(1.0, 1,1);  
+	
 
 
 	system("pause");
