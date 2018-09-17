@@ -131,13 +131,13 @@ public:
 	{
 
 	}
-	camView(double hor_l,double hor_fov)
+	camView(double hor_l,double ver_w,double hor_fov)
 	{
 		Hor_L = hor_l;
 		Hor_FOV = (hor_fov * pi) / 180;
 		Hor_H = (cos(Hor_FOV / 2) / sin(Hor_FOV / 2)* Hor_L / 2);// Hor_H 為 CAM水平 到屏幕直線距離
 		Hor_S = Hor_H / cos(Hor_FOV / 2);
-	 
+		Ver_W = ver_w;
 
 	}
 
@@ -175,20 +175,20 @@ public:
 
 			}
 		}
-		/* if (point_Vertical_Angle >0)
+		 if (point_Vertical_Angle >0)
 		{
-			dot.y = (Ver_W / 2)+(tan(point_Vertical_Angle)*Hor_H);
+			dot.y = (tan(point_Vertical_Angle)*Hor_H);
 		}
 		else
 		{
 			if (point_Vertical_Angle <0)
 			{
-				dot.y=(Ver_W / 2 )- (tan(point_Vertical_Angle)*Hor_H);
+				dot.y=(Ver_W / 2 )+(tan(point_Vertical_Angle)*Hor_H);
 			}
-		}*/
-	//	cout << "point(" << point.x << "," << point.y << "," << point.z << ")" << endl;
-	//	cout << "dot(" << dot.x << "," << dot.y <<  ")" << endl;
-		cout << Ver_W << endl;//沒初值:
+		}
+		cout << "point(" << point.x << "," << point.y << "," << point.z << ")" << endl;
+		cout << "dot(" << dot.x << "," << dot.y <<  ")" << endl;
+		 
 
 
 		
@@ -199,7 +199,7 @@ public:
 int main()
 {
 
-	camView T1(1.732*2, 120);
+	camView T1(1.732*2, 1.732 * 2, 120);
 
 	 
 	T1.point_To_Angle(1.0, 1,1);  
